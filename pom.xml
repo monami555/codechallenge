@@ -15,6 +15,13 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>bla</groupId>
+			<artifactId>bla</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/stdlib-package.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>

@@ -16,8 +16,10 @@ public class Basic
 		// Utils.execute("euclidGCD", (a, b) -> euclidGCD(a, b), 1111111, 1234567);
 		// Utils.execute("binomial", (a, b, c) -> binomial(a, b, c), 35, 15, 0.25);
 		// Utils.execute("binomialOpt", (a, b, c) -> binomialOpt(a, b, c), 35, 15, 0.25);
-		Utils.execute("binarySearch", (a, b, c) -> binarySearch(a, b, c), new double[]{1.0, 2.0, 5.0, 5.6, 7.8, 8.9},
-				9, 0);
+		Utils.execute("binarySearch", (a, b, c) -> binarySearch(a, b, c),
+				new double[]{1.0, 2.0, 5.0, 5.6, 7.8, 8.9}, 4, 0);
+		Utils.execute("binarySearchBetter", (a, b) -> binarySearchBetter(a, b),
+				new double[]{1.0, 2.0, 5.0, 5.6, 7.8, 8.9}, 4.0);
 	}
 
 	// ln(n!)
@@ -111,25 +113,47 @@ public class Basic
 		return (1 - p) * cache[n - 2][k - 1] + p * cache[n - 2][k - 2];
 	}
 
-	public static int binarySearch(double[] sortedArray, double searchedElement, int startIndex)
+	public static int binarySearch(double[] sortedArrayAsc, double searchedElement, int currentIndex)
 	{
-		if (sortedArray.length == 1)
+		if (sortedArrayAsc.length == 1)
 		{
-			return startIndex;
+			return currentIndex;
 		}
-		final int middle = sortedArray.length / 2;
-		if (sortedArray[middle] < searchedElement)
+		final int middle = sortedArrayAsc.length / 2;
+		if (sortedArrayAsc[middle] < searchedElement)
 		{
-			Utils.debug(startIndex, Arrays.toString(Arrays.copyOfRange(sortedArray, middle, sortedArray.length)));
-			return binarySearch(Arrays.copyOfRange(sortedArray, middle, sortedArray.length), searchedElement,
-					startIndex + middle);
+			Utils.debug(currentIndex, Arrays.toString(Arrays.copyOfRange(sortedArrayAsc, middle, sortedArrayAsc.length)));
+			return binarySearch(Arrays.copyOfRange(sortedArrayAsc, middle, sortedArrayAsc.length), searchedElement,
+					currentIndex + middle);
 		}
 		else
 		{
-			Utils.debug(startIndex, Arrays.toString(Arrays.copyOfRange(sortedArray, 0, middle)));
-			return binarySearch(Arrays.copyOfRange(sortedArray, 0, middle), searchedElement, startIndex);
+			Utils.debug(currentIndex, Arrays.toString(Arrays.copyOfRange(sortedArrayAsc, 0, middle)));
+			return binarySearch(Arrays.copyOfRange(sortedArrayAsc, 0, middle), searchedElement, currentIndex);
 		}
 	}
 
+	public static int binarySearchBetter(double[] sortedArrayAsc, double searchedElement)
+	{
+		return binarySearchBetterInternal(sortedArrayAsc, searchedElement, 0, sortedArrayAsc.length);
+	}
+
+	public static int binarySearchBetterInternal(double[] sortedArrayAsc, double searchedElement, int startIncl, int endExcl)
+	{
+		Utils.debug(startIncl,endExcl);
+		if (endExcl - startIncl == 1)
+		{
+			return startIncl;
+		}
+		final int middle = startIncl + (endExcl - startIncl) / 2;
+		if (sortedArrayAsc[middle] < searchedElement)
+		{
+			return binarySearchBetterInternal(sortedArrayAsc, searchedElement, middle, endExcl);
+		}
+		else
+		{
+			return binarySearchBetterInternal(sortedArrayAsc, searchedElement, startIncl, middle);
+		}
+	}
 
 }

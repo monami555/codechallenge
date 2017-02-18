@@ -13,7 +13,7 @@ public class Utils {
 
 	public static void debug(String in, String out) {
 		if (debug) {
-			System.err.println("  Value for " + in + " is " + out);
+			System.err.println("  " + in + " : " + out);
 		}
 	}
 
@@ -58,6 +58,15 @@ public class Utils {
 		System.out.println(name);
 		final LocalTime start = LocalTime.now();
 		final Object res = f.apply(arg1, arg2, arg3);
+		if (!debug)
+			printTimeSince(start);
+		System.out.println("  Result: " + res);
+	}
+
+	public static void execute(final String name, final BiFunction<double[], Double, Object> f, final double[] arg1, final double arg2) {
+		System.out.println(name);
+		final LocalTime start = LocalTime.now();
+		final Object res = f.apply(arg1, arg2);
 		if (!debug)
 			printTimeSince(start);
 		System.out.println("  Result: " + res);
