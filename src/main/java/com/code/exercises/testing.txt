@@ -1,0 +1,43 @@
+public static BinaryTree<Integer> construct(int[] numbers)
+{
+    BinaryTree<Integer> res = new BinaryTree<>();
+    res.setNode(numbers[0]);
+    for (int i=1;i<numbers.size();i++){
+        res = addNode(numbers[i], res);
+    }
+    return res;
+}
+
+private static BinaryTree<Integer> addNode(
+    final int number,
+    final BinaryTree<Integer> tree)
+{
+    BinaryTree<Integer> subtree;
+    if (tree.getNode() < number)
+    {
+        if (tree.getRight() != null)
+        {
+            subtree = addNode(number, tree.getRight());
+        }
+        else
+        {
+            subtree = new BinaryTree<>();
+            subtree.setNode(number);
+        }
+        tree.setRight(subtree);
+    }
+    else
+    {
+        if (tree.getLeft() != null)
+        {
+            subtree = addNode(number, tree.getLeft());
+        }
+        else
+        {
+            subtree = new BinaryTree<>();
+            subtree.setNode(number);
+        }
+        tree.setLeft(subtree);
+    }
+    return tree;
+}

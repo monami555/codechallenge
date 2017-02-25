@@ -1,4 +1,4 @@
-package com.code.exercises;
+package com.code.exercises.dynamic;
 
 import com.code.exercises.utils.Utils;
 
