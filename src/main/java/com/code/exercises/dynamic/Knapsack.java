@@ -2,14 +2,16 @@ package com.code.exercises.dynamic;
 
 import com.code.exercises.utils.Utils;
 
+
 public class Knapsack
 {
 	public static void main(String... args)
 	{
 		Utils.setDebug(true);
 
-		Utils.execute("knapsack", (a, b, c) -> knapsackWeightsValues(a, b, c), new int[]{3, 2, 1}, new int[]{5, 3,
-				4}, 5);
+		Utils.execute("knapsack", (a, b, c) -> knapsackWeightsValues(a, b, c),
+				new int[]{1, 1, 1, 1, 1, 2, 2, 3},
+				new int[]{1, 1, 1, 1, 1, 4, 4, 9}, 5);
 
 	}
 
@@ -81,7 +83,6 @@ public class Knapsack
 
 		return result;
 	}
-
-
-
 }
+
+

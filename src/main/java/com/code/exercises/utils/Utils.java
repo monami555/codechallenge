@@ -5,6 +5,8 @@ import com.code.exercises.trees.BinaryTree;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -55,6 +57,17 @@ public class Utils
 		if (!debug)
 			printTimeSince(start);
 		System.out.println("  Result: " + res);
+	}
+
+	public static void execute(final String name, final BiFunction<int[][], int[], LinkedList[]> f, final int[][] arg1,
+			final int[] arg2)
+	{
+		System.out.println(name);
+		final LocalTime start = LocalTime.now();
+		final LinkedList[] res = f.apply(arg1, arg2);
+		if (!debug)
+			printTimeSince(start);
+		System.out.println("  Result: " + Arrays.deepToString(res));
 	}
 
 	public static void execute(final String name, final TriFunction<int[], int[], Integer, int[]> f, final int[] arg1,
@@ -130,6 +143,23 @@ public class Utils
 		if (!debug)
 			printTimeSince(start);
 		System.out.println("  Result: " + res);
+	}
+
+	public static void execute(final String name, final TriFunction<LinkedList[], Integer, int[], int[]> f,
+			final LinkedList[] arg1,
+			final int arg2, final int[] arg3)
+	{
+		System.out.println(name);
+		final LocalTime start = LocalTime.now();
+		final int[] res = f.apply(arg1, arg2, arg3);
+		if (!debug)
+			printTimeSince(start);
+		System.out.print("  Result: ");
+		for (int j = 0; j < res.length; j++)
+		{
+			System.out.print(res[j] + ", ");
+		}
+		System.out.println();
 	}
 
 	public static void execute(final String name, final TriFunction<Integer, Integer, Double, Object> f, final int arg1,

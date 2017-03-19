@@ -19,7 +19,7 @@ public class HeapSort
 		for (int i = 0; i < heap.length; i++)
 		{
 			result[i] = heap[0];
-			
+
 			heap[0] = heap[heap.length - i - 1];
 			int j = 0;
 			int a = 2 * (j + 1) - 1;

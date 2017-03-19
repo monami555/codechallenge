@@ -5,6 +5,7 @@ public class BinaryTree<T>
 	private BinaryTree left;
 	private BinaryTree right;
 	private T node;
+	private Integer height;
 
 	public BinaryTree getLeft()
 	{
@@ -36,17 +37,27 @@ public class BinaryTree<T>
 		this.right = right;
 	}
 
-	public int getHeight()
+	public int calculateHeight()
 	{
-		return 1 + Math.max(left != null ? left.getHeight() : 0, right != null ? right.getHeight() : 0);
+		return 1 + Math.max(left != null ? left.calculateHeight() : 0, right != null ? right.calculateHeight() : 0);
 	}
 
 	@Override
 	public String toString()
 	{
 		if (left == null && right == null)
-			return this.node.toString();
+			return String.valueOf(this.node);
 		else
-			return this.node.toString() + " -> ( " + left + ", " + right + " )";
+			return String.valueOf(this.node) + "/" + this.getHeight() + " -> ( " + left + ", " + right + " )";
+	}
+
+	public Integer getHeight()
+	{
+		return height;
+	}
+
+	public void setHeight(final Integer height)
+	{
+		this.height = height;
 	}
 }
